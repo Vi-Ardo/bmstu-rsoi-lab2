@@ -2,12 +2,6 @@ import psycopg2
 
 DB_URL = "postgresql://program:test@postgres:5432/tickets"
 
-password = "1234"
-user = "post"
-port = "5432"
-host = "localhost"
-database = "postgres"
-
 def create_ticketsdb():
     db = psycopg2.connect(DB_URL)
     cursor = db.cursor()
