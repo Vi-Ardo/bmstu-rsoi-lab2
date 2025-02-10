@@ -154,4 +154,4 @@ def get_flight_byticket(flight_number: str):
     req = requests.get(f"http://{flights_ip}:8060/api/v1/flights/{flight_number}")
     return req.json(), 200
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    app.run(port=8080, debug=True)

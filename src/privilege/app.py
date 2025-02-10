@@ -84,4 +84,4 @@ def back_bonuses():
     
 if __name__ == '__main__':
     privilegedb.create_privilegedb()
-    app.run(host="0.0.0.0", port=8050, debug=True)
+    app.run(port=8050)

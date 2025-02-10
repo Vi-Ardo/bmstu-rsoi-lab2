@@ -52,8 +52,8 @@ def get_flights_byticket(flight_num: str):
         return json_flight, 200
     else:
         print("error")
-        return make_response(jsonify({"error": "Flight not found"}), 404)
+        return  404
     
 if __name__ == '__main__':
     flightdb.create_flightsdb()
-    app.run(host="0.0.0.0", port=8060, debug=True)
+    app.run(port=8060)

@@ -94,4 +94,4 @@ def delete_ticket(user_login: str, ticketUid: str):
     
 if __name__ == '__main__':
     ticketsdb.create_ticketsdb()
-    app.run(host="0.0.0.0", port=8070, debug=True)
+    app.run(port=8070)
