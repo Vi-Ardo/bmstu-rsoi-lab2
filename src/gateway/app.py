@@ -73,7 +73,7 @@ def get_tickets():
     else:
         return "не найдены билеты пользователя", 404
     
-# Получить информацию о всех билетах пользователя
+# Получить информацию по конкретному билету
 @app.route('/api/v1/tickets/<ticketUid>', methods=["GET"])
 def get_ticket(ticketUid: str):
     user = request.headers
