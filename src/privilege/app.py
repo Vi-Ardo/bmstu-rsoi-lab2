@@ -10,7 +10,7 @@ def BS_hello_world():
 
 @app.route('/manage/health', methods=['GET'])
 def BS_health_check():
-    return 200
+    return "", 200
 
 @app.route('/api/v1/privilege/<user>', methods=["GET"])
 def get_base_privilege(user: str):

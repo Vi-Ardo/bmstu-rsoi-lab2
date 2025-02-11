@@ -38,7 +38,7 @@ def create_flightsdb():
         cursor.execute(f"INSERT INTO airport (id, name, city, country) "
                        f"VALUES (DEFAULT, 'Пулково', 'Санкт-Петербург', 'Россия');")
         db.commit()
-    cursor.execute(f"SELECT flight FROM flight WHERE flight_number = 'AFL031'")
+    cursor.execute(f"SELECT flight_number FROM flight WHERE flight_number = 'AFL031'")
     a = cursor.fetchone()
     if not a:
         cursor.execute(f"INSERT INTO flight (id, flight_number, datetime, from_airport_id, to_airport_id, price) "
@@ -47,6 +47,7 @@ def create_flightsdb():
     cursor.close()
     db.close()
     return
+
 def get_flights(page: int, size: int):
     left = str(page * size - size)
     right = str(page * size)
@@ -62,6 +63,7 @@ def get_flights(page: int, size: int):
     cursor.close()
     db.close()
     return flights
+
 def get_flights_bynum(flight_num: str):
     db = psycopg2.connect(DB_URL)
     cursor = db.cursor()

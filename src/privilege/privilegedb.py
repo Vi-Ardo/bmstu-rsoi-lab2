@@ -30,7 +30,7 @@ def create_privilegedb():
                    """)
     db.commit()
     
-    cursor.execute(f"SELECT privilege FROM privilege WHERE username = 'Test Max'")
+    cursor.execute(f"SELECT id FROM privilege WHERE username = 'Test Max'")
     a = cursor.fetchone()
     if not a:
         cursor.execute(f"INSERT INTO privilege (id, username, status, balance) "
@@ -112,7 +112,7 @@ def back_bonuses(user: str, ticket_uid: str):
     if status[1] == "DEBIT_THE_ACCOUNT":
         cursor.execute(
             f"INSERT INTO privilege_history (id, privilege_id, ticket_uid, datetime, balance_diff, operation_type)"
-            f"VALUES (DEFAULT, '{idd}', '{ticket_uid}', LOCALTIMESTAMP, {balance_diff}, 'FILL_IN_BALANCE';")
+            f"VALUES (DEFAULT, '{idd}', '{ticket_uid}', LOCALTIMESTAMP, {balance_diff}, 'FILL_IN_BALANCE');")
         db.commit()
         new_balance = old_balance + balance_diff
 

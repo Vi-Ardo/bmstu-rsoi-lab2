@@ -16,7 +16,7 @@ def TS_hello_world():
 
 @app.route('/manage/health', methods=['GET'])
 def TS_health_check():
-    return 200
+    return "", 200
 
 @app.route('/api/v1/tickets/<user>', methods=["GET"])
 def get_tickets(user: str):
@@ -51,7 +51,7 @@ def get_tickets_post():
     user = user["X-User-Name"]
     json = request.json
     ticketUid = str(uuid.uuid4())
-    print("генератор юайди")
+    print("ticketUid")
     print(ticketUid)
     isadded = ticketsdb.add_ticket(ticketUid, user, json["flightNumber"], json["price"])
     json_ticket = {
@@ -60,7 +60,7 @@ def get_tickets_post():
     }
 
     if isadded:
-        return json_ticket, 201
+        return json_ticket, 200
     else:
         return 400
     
@@ -90,7 +90,7 @@ def delete_ticket(user_login: str, ticketUid: str):
     if status:
         return {}, 200
     else:
-        return {}, 404
+        return {"error": "Ticket not found"}, 404
     
 if __name__ == '__main__':
     ticketsdb.create_ticketsdb()

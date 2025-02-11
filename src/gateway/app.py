@@ -4,6 +4,11 @@ from flask import Flask, request, jsonify, make_response
 
 app = Flask(__name__)
 
+# ports
+# gateway 8080
+# flights 8060
+# privilege 8050
+# ticket 8070
 
 flights_ip = "flight"
 privilege_ip = "privilege"
@@ -96,6 +101,7 @@ def delete_ticket(ticketUid: str):
         return "Не найдена программа боунусов, билет возвращен", 404
     return "Билет успешно возвращен", 204
 
+# Покупка билета
 @app.route('/api/v1/tickets', methods=["POST"])
 def post_ticket():
     # проверка существования рейса (flightNumber), если флаг привелегий установлен то списываем привелегии
@@ -140,6 +146,7 @@ def post_ticket():
     }
     print(json_req["price"])
     print(json_privil["paidByMoney"])
+
     return json_out, 200
 
 # Получить информацию о состоянии бонусного счета
@@ -149,9 +156,11 @@ def get_privilege():
     user = user["X-User-Name"]
     privilege_info = requests.get(url=f"http://{privilege_ip}:8050/api/v1/privileges/{user}")
     return privilege_info.json(), 200
+
 @app.route(f"/api/v1/flights/<flight_number>", methods=["GET"])
 def get_flight_byticket(flight_number: str):
     req = requests.get(f"http://{flights_ip}:8060/api/v1/flights/{flight_number}")
     return req.json(), 200
+
 if __name__ == '__main__':
     app.run(port=8080, debug=True)

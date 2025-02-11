@@ -1,6 +1,8 @@
 import flightdb
 from flask import Flask, request, jsonify, make_response
+
 app = Flask(__name__)
+
 @app.route('/')
 def FS_hello_world():
     statement = 'Flight service!'
@@ -52,7 +54,7 @@ def get_flights_byticket(flight_num: str):
         return json_flight, 200
     else:
         print("error")
-        return  404
+        return "", 404
     
 if __name__ == '__main__':
     flightdb.create_flightsdb()
